@@ -8,19 +8,19 @@
 
 ## Executive summary
 
-The dashboard entry point is [app/dashboard.py](./app/dashboard.py). The dashboard, requirements, notebook, and generated output files are published on the `main` branch. The large risk-score tables are stored as gzip-compressed CSVs; the dashboard falls back to those files when uncompressed CSVs are unavailable.
+The dashboard implementation is [fraud_dashboard_app.py](./fraud_dashboard_app.py). Both [app/dashboard.py](./app/dashboard.py) and [dashboard.py](./dashboard.py) are entry points to that same results dashboard. The dashboard, requirements, notebook, and generated output files are published on the `main` branch. The large risk-score tables are stored as gzip-compressed CSVs; the dashboard falls back to those files when uncompressed CSVs are unavailable.
 
 The local Streamlit app responded successfully at `http://localhost:8501`. No Community Cloud app was created or published, so cloud startup and interactions still need to be verified after connecting the repository.
 
 ## Application overview
 
 - **Framework:** Streamlit
-- **Entry point:** `app/dashboard.py`
+- **Entry points:** `app/dashboard.py` and `dashboard.py`
 - **Dependencies:** Streamlit, pandas, and scikit-learn; the dashboard also imports NumPy.
 - **Generated outputs:** Association rules, frequent itemsets, fraud-focused rules, risk scores, high-risk transactions, and model comparison data.
 - **Data source:** Synthetic PaySim financial transaction data and generated CSV outputs.
 
-The dashboard resolves the `outputs` directory relative to the repository root. This works when the entry point is launched as `streamlit run app/dashboard.py` from the project root and when Community Cloud runs the configured entry point from the repository.
+The shared dashboard resolves the `outputs` directory relative to the repository root. Either Streamlit entry point runs the same results-based dashboard and reads the checked-in output tables.
 
 ## Changes and checks completed
 
@@ -51,7 +51,7 @@ No data was reduced or moved to external storage. If another deployment platform
 ## Steps to publish after resolving data delivery
 
 1. Open Streamlit Community Cloud and create an app connected to this repository's `main` branch.
-2. Set the main file path to `app/dashboard.py`.
+2. Set the main file path to either `app/dashboard.py` or `dashboard.py`.
 3. Confirm the app is using the repository's `requirements.txt`.
 4. Deploy and review startup logs. Verify the sidebar data status, overview metrics, risk-scoring tab, evaluation tab, and high-risk transaction tab.
 5. If any future data is externalized, configure credentials through Community Cloud secrets rather than committing credentials to the repository.
