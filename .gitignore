@@ -11,6 +11,10 @@ __pycache__/
 # Raw dataset
 data/*.csv
 
+# Large generated score files are committed in compressed form
+outputs/fraud_risk_scores.csv
+notebooks/outputs/fraud_risk_scores.csv
+
 # OS-generated files
 .DS_Store
 Thumbs.db

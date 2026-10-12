@@ -170,6 +170,10 @@ From the project root:
 streamlit run app/dashboard.py
 ```
 
+The dashboard reads generated risk-score data from `outputs/`; the score
+table is stored as a gzip-compressed CSV to keep the repository within
+GitHub's file-size limits.
+
 ---
 
 ## Technology Stack
